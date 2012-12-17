@@ -44,6 +44,7 @@ class pe_repo ($vardir = "${settings::vardir}/pe_repo") {
 #    dist => el,
 #    pever => '2.7.0',
 #  } 
-  Pe_repo::Download <| |> ->
+  Pe_repo::Yumrepo <| |> ->
+  Pe_repo::Dpkg <| |> ->
   Class['pe_repo']
 }

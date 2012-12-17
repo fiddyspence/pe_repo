@@ -36,13 +36,14 @@
 # Copyright 2011 Your name here, unless otherwise noted.
 #
 class pe_repo ($vardir = "${settings::vardir}/pe_repo") {
-#  notify { $pe_repo::vardir: }
   class { 'pe_repo::packages': } ->
   class { 'pe_repo::files': } ->
-  pe_repo::download { 'rhel_5_i386_2.7.0':
-    arch => 'i386',
-    rel => 5,
-    dist => el,
-    pever => '2.7.0',
-  } 
+#  pe_repo::download { 'rhel_5_i386_2.7.0':
+#    arch => 'i386',
+#    rel => 5,
+#    dist => el,
+#    pever => '2.7.0',
+#  } 
+  Pe_repo::Download <| |> ->
+  Class['pe_repo']
 }

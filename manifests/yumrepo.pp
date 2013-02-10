@@ -3,7 +3,7 @@
 # --no-check-certificate
 # https://s3.amazonaws.com/pe-builds/released/2.7.0/puppet-enterprise-2.7.0-ubuntu-12.04-amd64.tar.gz
 define pe_repo::yumrepo (
-  $url = 'https://s3.amazonaws.com/pe-builds/released/PEVER/',
+  $url = $pe_repo::url,
   $defaultfile = 'puppet-enterprise-PEVER-DIST-REL-ARCH.tar.gz',
   $pever,
   $arch,

@@ -36,10 +36,10 @@
 # Copyright 2011 Your name here, unless otherwise noted.
 #
 class pe_repo (
-  $vardir = hiera('pe_repo::vardir',"/opt/pe_repo"),
+  $vardir = hiera('pe_repo::vardir','/opt/pe_repo'),
   $url = 'https://s3.amazonaws.com/pe-builds/released/PEVER/',
   $defaultfile = 'puppet-enterprise-PEVER-DIST-REL-ARCH.tar.gz'
-) {
+){
   class { 'pe_repo::packages': } ->
   class { 'pe_repo::files': } ->
   Pe_repo::Yumrepo <| |> ->

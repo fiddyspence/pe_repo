@@ -7,6 +7,10 @@ define pe_repo::yumrepo (
   $defaultfile = $::pe_repo::defaultfile,
 ){
 
+  Exec {
+    path => '/bin:/usr/bin:/usr/local/bin',
+  }
+
   $the_target = "${pe_repo::vardir}/${title}"
   $the_file = inline_template("<%= @defaultfile.gsub('DIST',@dist).gsub('ARCH',@arch).gsub('REL',@rel).gsub('PEVER',@pever) -%>")
   $url_real = inline_template("<%= @url.gsub('DIST',@dist).gsub('ARCH',@arch).gsub('REL',@rel).gsub('PEVER',@pever)-%><%=@the_file -%>")
@@ -18,19 +22,16 @@ define pe_repo::yumrepo (
   exec { "pe_repo_download_installerfor${title}":
     command => "curl '${url_real}' -o ${the_target}/${the_file} --insecure -C -",
     creates => "${the_target}/${the_file}",
-    path    => '/bin:/usr/bin:/usr/bin/local',
     timeout => 0,
   } ~>
   exec { "unpackinstallerfor${title}":
     command => "tar -zxvf ${the_target}/${the_file}",
     cwd     => $the_target,
-    path    => '/bin:/usr/bin:/usr/bin/local',
     creates => $the_directory,
   } ~>
   exec { "createrepofor${title}":
     command => "createrepo .",
     cwd     => "${the_directory}/packages",
-    path    => '/bin:/usr/bin:/usr/bin/local',
     creates => "${the_directory}/packages/repodata/",
   } ->
   file { "/etc/puppetlabs/httpd/conf.d/${name}.conf":

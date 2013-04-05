@@ -1,3 +1,7 @@
+# == Class: pe_repo::files
+#
+# Class container to manage file resources for the pe_repo module
+#
 class pe_repo::files {
 
   file { $pe_repo::vardir:

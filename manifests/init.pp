@@ -1,39 +1,18 @@
 # == Class: pe_repo
 #
-# Full description of class pe_repo here.
-#
-# === Parameters
-#
-# Document parameters here.
-#
-# [*sample_parameter*]
-#   Explanation of what this parameter affects and what it defaults to.
-#   e.g. "Specify one or more upstream ntp servers as an array."
-#
-# === Variables
-#
-# Here you should define a list of variables that this module would require.
-#
-# [*sample_variable*]
-#   Explanation of how this variable affects the funtion of this class and if it
-#   has a default. e.g. "The parameter enc_ntp_servers must be set by the
-#   External Node Classifier as a comma separated list of hostnames." (Note,
-#   global variables should not be used in preference to class parameters  as of
-#   Puppet 2.6.)
+# Class to setup repositories for PE on Yum/Apt based systems
 #
 # === Examples
 #
-#  class { pe_repo:
-#    servers => [ 'pool.ntp.org', 'ntp.local.company.com' ]
-#  }
+# include pe_repo
 #
 # === Authors
 #
-# Author Name <author@domain.com>
+# Fiddyspence <chris.spence@puppetlabs.com>
 #
 # === Copyright
 #
-# Copyright 2011 Your name here, unless otherwise noted.
+# Copyright 2013 Puppet Labs
 #
 class pe_repo (
   $vardir = hiera('pe_repo::vardir','/opt/pe_repo'),

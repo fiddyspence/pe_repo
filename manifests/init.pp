@@ -17,11 +17,19 @@
 class pe_repo (
   $vardir = hiera('pe_repo::vardir','/opt/pe_repo'),
   $url = 'https://s3.amazonaws.com/pe-builds/released/PEVER/',
-  $defaultfile = 'puppet-enterprise-PEVER-DIST-REL-ARCH.tar.gz'
+  $defaultfile = 'puppet-enterprise-PEVER-DIST-REL-ARCH.tar.gz',
+  $proxy = undef,
 ){
-  class { 'pe_repo::packages': } ->
-  class { 'pe_repo::files': } ->
-  Pe_repo::Yumrepo <| |> ->
-  Pe_repo::Dpkg <| |> ->
-  Class['pe_repo']
+  case $::osfamily {
+    'Debian', 'RedHat': {
+      class { 'pe_repo::packages': } ->
+      class { 'pe_repo::files': } ->
+      Pe_repo::Yumrepo <| |> ->
+      Pe_repo::Dpkg <| |> ->
+      Class['pe_repo']
+    }
+    default: {
+      fail("Your Operatingsystem: ${::operatingsystem} not supported")
+    }
+  }
 }

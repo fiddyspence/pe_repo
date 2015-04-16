@@ -18,7 +18,7 @@ define pe_repo::dpkg (
   $url_real = inline_template("<%= @url.gsub('DIST',@dist).gsub('ARCH',@arch).gsub('REL',@rel).gsub('PEVER',@pever)-%><%=@the_file -%>")
   $the_directory = inline_template("<%= @the_target -%>/<%= @the_file.gsub('.tar.gz','') -%>")
   $exec_environment = $proxy ? {
-    undef   => '',
+    undef   => [],
     default => ["HTTP_PROXY=${proxy}", "HTTPS_PROXY=${proxy}"],
   }
 

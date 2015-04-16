@@ -7,6 +7,9 @@ describe 'pe_repo' do
         let(:facts) {{
           :osfamily => osfamily,
         }}
+        let(:pre_condition) {["
+            service { 'pe-httpd': ensure => running }
+        "]}
         it { should compile.with_all_deps }
         it { should contain_class('pe_repo') }
         it { should contain_class('pe_repo::packages').that_comes_before('pe_repo::files') }

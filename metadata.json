@@ -1,0 +1,27 @@
+{
+  "name": "fiddyspence-pe_repo",
+  "version": "0.1.0",
+  "author": "Chris Spence",
+  "license": "Apache-2.0",
+  "summary": "module to sync puppet enterprise tarblobs and create a repo",
+  "source": "https://github.com/fiddyspence/pe_repo",
+  "project_page": "https://github.com/fiddyspence/pe_repo",
+  "issues_url": "https://github.com/fiddyspence/pe_repo/issues",
+  "tags": ["sysctl", "kernel","parameters"],
+  "operatingsystem_support": [
+    {
+    "operatingsystem":"Redhat",
+    "operatingsystemrelease":[ "5.0", "6.0", "7.0" ]
+    },
+    {
+    "operatingsystem":"Ubuntu",
+    "operatingsystemrelease":[ "12.04","10.04","14.10" ]
+    },
+    {
+    "operatingsystem":"Debian",
+    "operatingsystemrelease":[ "5.0","6.0","7.0"] 
+    }
+   ],
+  "dependencies": [
+  ]
+}

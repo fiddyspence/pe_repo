@@ -1,7 +1,7 @@
 require 'spec_helper'
 describe 'pe_repo' do
   context 'supported operating systems' do
-    ['Debian', 'RedHat'].each do |osfamily|
+    ['Debian', 'RedHat', 'Suse'].each do |osfamily|
       describe "pe_repo class without any parameters on #{osfamily}" do
         let(:params) {{ }}
         let(:facts) {{
@@ -15,7 +15,6 @@ describe 'pe_repo' do
         it { should contain_class('pe_repo::packages').that_comes_before('pe_repo::files') }
         it { should contain_class('pe_repo::files') }
         it { should contain_package('createrepo').with_ensure('present') }
-        it { should contain_package('dpkg-devel').with_ensure('present') }
       end
     end
   end

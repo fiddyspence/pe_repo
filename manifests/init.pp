@@ -21,11 +21,12 @@ class pe_repo (
   $proxy = undef,
 ){
   case $::osfamily {
-    'Debian', 'RedHat': {
+    'Debian', 'RedHat', 'Suse': {
       class { 'pe_repo::packages': } ->
       class { 'pe_repo::files': } ->
       Pe_repo::Yumrepo <| |> ->
       Pe_repo::Dpkg <| |> ->
+      Pe_repo::Zypper <| |> ->
       Class['pe_repo']
     }
     default: {

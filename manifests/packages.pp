@@ -4,10 +4,15 @@
 #
 class pe_repo::packages {
 
-  package { 'createrepo':
-    ensure => present,
+  case $::osfamily {
+    'Debian', 'RedHat': {
+      $pkglist = ['createrepo', 'dpkg-devel']
+    }
+    'Suse': {
+      $pkglist = 'createrepo'
+    }
   }
-  package { 'dpkg-devel':
+  package { $pkglist:
     ensure => present,
   }
 
